@@ -25,18 +25,42 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        { txt: 'I never eat Falafel', size: 20, align: 'left', color: 'red' }
-    ]
+    lines: [{
+        txt: 'I never eat Falafel',
+        size: 40,
+        align: 'left',
+        color: 'red',
+        pos: 100
+    }]
 };
 
 function getImages() {
     return gImgs;
 }
 
+function getMeme() {
+    return gMeme;
+}
+
 function getImgById(imgId) {
-    var img = gImgs.find(function(img) {
+    var img = gImgs.find(img => {
         return imgId === img.id;
     })
     return img;
+}
+
+function setText(text, idx) {
+    gMeme.lines[idx].txt = text;
+}
+
+function setTextSize(line, diff) {
+    line.size += diff;
+}
+
+function setMoveLine(line, diff) {
+    line.pos += diff;
+}
+
+function getLineSelected() {
+    return gMeme.lines[gMeme.selectedLineIdx];
 }

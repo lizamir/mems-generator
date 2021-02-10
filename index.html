@@ -30,7 +30,16 @@
         </section>
     </header>
 
-    <section class="meme-editor"></section>
+    <section class="meme-editor">
+        <section class="canvas-container main-container"></section>
+        <section class="editor-container">
+            <input class="meme-text" type=text name="line" placeholder="text" onkeyup="onSetText()">
+            <button class="increase" onclick="onChangeFontSize(1)">A+</button>
+            <button class="decrease" onclick="onChangeFontSize(-1)">A-</button>
+            <button class="up" onclick="onMoveLines(1)">↑</button>
+            <button class="down" onclick="onMoveLines(-1)">↓</button>
+        </section>
+    </section>
 
     <section class="image-gallery  main-container"></section>
 
