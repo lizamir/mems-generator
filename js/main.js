@@ -72,13 +72,29 @@ function drawText(text, size, x, y) {
 }
 
 function onChangeFontSize(diff) {
-    var line = getLineSelected();
+    let line = getLineSelected();
     setTextSize(line, diff);
     onSetText()
 }
 
 function onMoveLines(diff) {
-    var line = getLineSelected();
+    let line = getLineSelected();
     setMoveLine(line, diff);
     onSetText();
+}
+
+function onAddLine() {
+    let line = getLineSelected();
+    document.getElementById('line').focus();
+    let pos = 500;
+    createLine(pos);
+    console.log('new line', gMeme);
+    // drawText(newLine.txt, newLine.size, x, y) 
+    cleanInputText();
+}
+
+function cleanInputText() {
+    const memeText = document.getElementById('line')
+    memeText.value = ''
+
 }

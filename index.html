@@ -33,11 +33,15 @@
     <section class="meme-editor">
         <section class="canvas-container main-container"></section>
         <section class="editor-container">
-            <input class="meme-text" type=text name="line" placeholder="text" onkeyup="onSetText()">
-            <button class="increase" onclick="onChangeFontSize(1)">A+</button>
-            <button class="decrease" onclick="onChangeFontSize(-1)">A-</button>
-            <button class="up" onclick="onMoveLines(1)">↑</button>
-            <button class="down" onclick="onMoveLines(-1)">↓</button>
+            <input class="meme-text" id="line" type=text name="line" placeholder="text" onkeyup="onSetText()">
+            <button class="increase btn" onclick="onChangeFontSize(1)">A+</button>
+            <button class="decrease btn" onclick="onChangeFontSize(-1)">A-</button>
+            <button class="up btn" onclick="onMoveLines(1)">↑</button>
+            <button class="down btn" onclick="onMoveLines(-1)">↓</button>
+            <button class="switch btn" onclick="onSwitchLines()">↹</button>
+            <button class="add-line btn" onclick="onAddLine()">+</button>
+
+
         </section>
     </section>
 

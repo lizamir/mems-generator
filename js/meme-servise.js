@@ -26,12 +26,20 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [{
-        txt: 'I never eat Falafel',
-        size: 40,
-        align: 'left',
-        color: 'red',
-        pos: 100
-    }]
+            txt: 'I never eat Falafel',
+            size: 40,
+            align: 'center',
+            color: 'black',
+            pos: 100
+        },
+        {
+            txt: 'I need money',
+            size: 40,
+            align: 'left',
+            color: 'red',
+            pos: 300
+        }
+    ]
 };
 
 function getImages() {
@@ -40,6 +48,10 @@ function getImages() {
 
 function getMeme() {
     return gMeme;
+}
+
+function getLines() {
+    return gMeme.lines;
 }
 
 function getImgById(imgId) {
@@ -63,4 +75,17 @@ function setMoveLine(line, diff) {
 
 function getLineSelected() {
     return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function createLine(pos) {
+    let line = {
+        txt: '',
+        size: 40,
+        align: 'center',
+        color: 'black',
+        pos: pos
+    }
+    gMeme.lines.push(line)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    console.log('line', line);
 }
