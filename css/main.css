@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Montserrat;
+    color: #606060;
+    line-height: 1.25;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    font-size: 1rem;
+}
+
+
+/* component */
+
+.main-header {
+    width: 100%;
+    height: 66px;
+    background-color: #ec8e00;
+    box-shadow: inset 0 -6px 0 #1e1e1e;
+    position: fixed;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: content-box;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.logo {
+    width: 100px;
+}
+
+.main-header .main-nav>* {
+    justify-content: space-between;
+}
+
+.nav-item {
+    justify-content: center;
+}
+
+.main-nav .nav-item {
+    width: 132px;
+    height: 130px;
+    font-family: lato-bold;
+    text-transform: capitalize;
+    font-size: 1rem;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 0 #1e1e1e;
+}
+
+.main-nav li {
+    text-align: center;
+}
+
+
+/* helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
