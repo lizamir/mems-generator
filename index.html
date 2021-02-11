@@ -12,40 +12,87 @@
 
 
     <header>
-        <section class="main-header flex align-center">
-            <nav class="header-container main-container flex align-center space-between">
+        <section class="main-header flex align-center space-between">
+            <div class="logo-place">
                 <img class="logo" src="img/logo.png" alt="logo"></img>
+            </div>
+            <nav class="header-container ">
                 <ul class="main-nav clean-list flex ">
                     <li>
-                        <a href="#" class="gallery flex align-center nav-item">GALLERY</a>
+                        <a href="#" class="gallery flex align-center nav-item">Gallery</a>
                     </li>
                     <li>
-                        <a href="#" class="memes flex align-center nav-item">MEMES</a>
+                        <a href="#" class="memes flex align-center nav-item">Mems</a>
                     </li>
                     <li>
-                        <a href="#" class="about flex align-center nav-item">ABOUT</a>
+                        <a href="#" class="about flex align-center nav-item">About</a>
                     </li>
                 </ul>
             </nav>
         </section>
     </header>
 
+    <nav class="search-nav flex align-center space-between">
+
+        <div class="search flex align-center">
+            <input type="text" class="search-input" name="search" placeholder="Search..." oninput="onSearchImg()">
+            <img class="icon-search" src="img/search.png">
+        </div>
+
+        <div class="keywords flex space-around align-center">
+            <div class="grid justify-center align-center keywords"></div>
+            <button class="more btn" onclick="renderKeyWords()">More</button>
+        </div>
+    </nav>
+
+
     <section class="meme-editor">
         <section class="canvas-container main-container"></section>
-        <section class="editor-container">
-            <input class="meme-text" id="line" type=text name="line" placeholder="text" onkeyup="onSetText()">
-            <button class="increase btn" onclick="onChangeFontSize(1)">A+</button>
-            <button class="decrease btn" onclick="onChangeFontSize(-1)">A-</button>
-            <button class="up btn" onclick="onMoveLines(1)">↑</button>
-            <button class="down btn" onclick="onMoveLines(-1)">↓</button>
-            <button class="switch btn" onclick="onSwitchLines()">↹</button>
-            <button class="add-line btn" onclick="onAddLine()">+</button>
+        <section class="editor-container flex align-center ">
+            <div class="meme-text-container flex align-center">
+                <input class="meme-text" id="line" type=text name="line" placeholder="text" onkeyup="onSetText()">
+            </div>
+            <div class="editor-btn">
+                <div class="line-one flex align-center">
+
+                    <img src="ICONS/add.png" class="add-line btn-img" onclick="onAddLine()">
+                    <img src="ICONS/trash.png" class=" btn-img" onclick="onDeleteLine()">
+                    <img src="ICONS/up-down.png" class="switch btn-img" onclick="onSwitchLines()">
+
+                </div>
+
+                <div class="line-two flex align-center">
+                    <img src="ICONS/inc.png" class="increase btn-img" onclick="onChangeFontSize(1)">
+                    <img src="ICONS/dec.png" class="decrease btn-img" onclick="onChangeFontSize(-1)">
+                    <img src="ICONS/center.png" class=" btn-img" onclick="onAddLine()">
+                    <img src="ICONS/left.png" class=" btn-img" onclick="onAddLine()">
+                    <img src="ICONS/right.png" class=" btn-img" onclick="onAddLine()">
+
+                </div>
+
+                <img src="ICONS/paint.png" class=" btn-img" onclick="onAddLine()">
+                <img src="ICONS/text stroke.png" class=" btn-img" onclick="onAddLine()">
+                <button class="up btn-btn" onclick="onMoveLines(1)">↑</button>
+                <button class="down btn-btn" onclick="onMoveLines(-1)">↓</button>
+            </div>
 
 
         </section>
     </section>
 
     <section class="image-gallery  main-container"></section>
+
+    <section class="person-container flex align-center space-between">
+        <img class="person-img" src="img/liz.jpg">
+        <div class="person-about flex ">
+            <p class="person-name">Liz Hajaj</p>
+            <p class="person-story">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci repellat officia consequatur aliquid. Temporibus veritatis placeat dolor, ab nesciunt repudiandae quae blanditiis cupiditate, minima nemo magni mollitia quod unde fuga?</p>
+        </div>
+    </section>
+    <footer class="main-footer flex align-center justify-center">
+        <img class="logo" src="img/logo.png" alt="logo"></img>
+        <p>all rights reserved 2021</p>
+    </footer>
 
     <script src="js/meme-servise.js"></script>
     <script src="js/main.js"></script>

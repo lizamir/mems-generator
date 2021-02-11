@@ -1,9 +1,24 @@
+@font-face {
+    font-family: montserrat;
+    src: url(../fonts/montserrat/Montserrat-Light.ttf);
+}
+
+@font-face {
+    font-family: montserrat-bold;
+    src: url(../fonts/montserrat/Montserrat-Medium.ttf);
+}
+
+@font-face {
+    font-family: brands;
+    src: url(../fonts/awesome/fa-brands-400.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
 
 html {
-    font-family: Montserrat;
+    font-family: montserrat;
     color: #606060;
     line-height: 1.25;
 }
@@ -11,6 +26,7 @@ html {
 a {
     text-decoration: none;
     cursor: pointer;
+    color: white;
 }
 
 img {
@@ -19,6 +35,7 @@ img {
 }
 
 body {
+    background-color: #e3e3e3;
     margin: 0;
     font-size: 1rem;
 }
@@ -27,11 +44,11 @@ body {
 /* component */
 
 .main-header {
+    font-family: 'Montserrat';
     display: grid;
     width: 100%;
     height: 66px;
-    background-color: #ec8e00;
-    box-shadow: inset 0 -6px 0 #1e1e1e;
+    background-color: #ff7f00;
     position: fixed;
     top: 0;
 }
@@ -43,8 +60,11 @@ body {
 }
 
 .logo {
-    width: 100px;
-    float: left;
+    width: 134px;
+}
+
+.logo-place {
+    margin: 20px;
 }
 
 .main-header .main-nav>* {
@@ -52,17 +72,13 @@ body {
 }
 
 .nav-item {
-    justify-content: center;
+    font-family: 'Montserrat';
 }
 
 .main-nav .nav-item {
-    width: 132px;
-    height: 130px;
-    font-family: lato-bold;
-    text-transform: capitalize;
+    width: 95px;
     font-size: 1rem;
-    letter-spacing: 0.8px;
-    text-shadow: 0 1px 0 #1e1e1e;
+    font-family: montserrat-bold
 }
 
 .main-nav li {
@@ -73,7 +89,54 @@ body {
     display: grid;
     gap: 15px 15px;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    padding: 90px;
+}
+
+.search-nav {
+    padding: 100px;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    padding: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #242424;
+}
+
+.icon-search {
+    width: 20%;
+    margin-left: 20px;
+}
+
+
+/* footer */
+
+.main-footer {
+    height: 200px;
+    background-color: #ff7f00;
+    flex-direction: column;
+}
+
+.person-container {
+    height: 548px;
+    background-color: #ffffff;
+}
+
+.person-img {
+    border-radius: 50%;
+    width: 300px;
+    margin: 50px;
+}
+
+.person-about {
+    flex-direction: column;
+    margin-inline-start: 10px;
+}
+
+.person-name {
+    font-size: 1.375rem;
+    font-family: 'Signika-Bold';
 }
 
 
@@ -100,10 +163,57 @@ canvas {
 }
 
 .editor-container {
-    background-color: rgba(255, 255, 255, 0.582);
-    width: 500px;
-    height: 500px;
-    border: solid 1px black;
+    background-color: #e3e3e3;
+    flex-direction: column;
+    flex-basis: 50%;
+    padding: 10px;
+}
+
+
+/* buttons */
+
+.meme-text-container {
+    width: 100%;
+}
+
+.meme-text {
+    border-radius: 12px;
+    width: 80%;
+    margin-block-start: 20px;
+    font-family: 'Montserrat';
+    padding: 18px;
+    border: none;
+    color: black;
+}
+
+.btn-btn {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 20px 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.editor-btn {
+    width: 50%;
+    flex-wrap: wrap;
+}
+
+.btn-img {
+    width: 52px;
+    height: 53px;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: white;
+    cursor: pointer;
+    margin-inline-end: 16px;
+    margin-block-end: 15px;
+}
+
+.line-one {
+    padding: 20px;
+    margin-right: 10px;
 }
 
 

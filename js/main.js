@@ -22,6 +22,8 @@ function renderImages() {
 
 function renderDesign(imgId) {
     document.querySelector('.image-gallery').classList.add("hide");
+    document.querySelector('.person-container').classList.add("hide");
+    document.querySelector('.search-nav').classList.add("hide");
     document.querySelector('.meme-editor').classList.add("display-flex");
     let img = getImgById(imgId);
     let strHtml = `
@@ -33,7 +35,7 @@ function renderDesign(imgId) {
     resizeCanvas();
     drawImg();
     let memText = getMeme();
-    drawText(gMeme.lines[memText.selectedLineIdx].txt, `${memText.lines[0].size}`, gElCanvas.width / 2, `${memText.lines[0].pos}`)
+    drawText(gMeme.lines[memText.selectedLineIdx].txt, `${memText.lines[0].size}`, `${memText.lines[0].pos.x }`, `${memText.lines[0].pos.y}`)
 }
 
 function drawImg() {
@@ -56,10 +58,18 @@ function onSetText() {
     renderCanvas();
     drawImg();
     let memText = getMeme();
-    let text = document.querySelector('input[name=line]').value;
-    setText(text, 0);
-    drawText(text, `${memText.lines[0].size}`, gElCanvas.width / 2, `${memText.lines[0].pos}`);
+    if (!memText.selectedLineIdx) {
+        let text = document.querySelector('input[name=line]').value;
+        setText(text, 0);
+    }
+    drawText(memText.lines[0].txt, memText.lines[0].size, memText.lines[0].pos.x, memText.lines[0].pos.y);
+    if (memText.selectedLineIdx) {
+        let text = document.querySelector('input[name=line]').value;
+        setText(text, 1);
+    }
+    drawText(memText.lines[1].txt, memText.lines[1].size, memText.lines[1].pos.x, memText.lines[1].pos.y);
 }
+
 
 function drawText(text, size, x, y) {
     gCtx.lineWidth = 2
@@ -84,12 +94,13 @@ function onMoveLines(diff) {
 }
 
 function onAddLine() {
-    let line = getLineSelected();
-    document.getElementById('line').focus();
-    let pos = 500;
-    createLine(pos);
-    console.log('new line', gMeme);
-    // drawText(newLine.txt, newLine.size, x, y) 
+    renderCanvas();
+    onSetText();
+    let meme = getMeme();
+    gCtx.rect(meme.lines[1].pos.x - 200, meme.lines[1].pos.y - 40, 400, 50);
+    gCtx.strokeStyle = 'black';
+    gCtx.stroke();
+    setSelectedLineIdx(1);
     cleanInputText();
 }
 

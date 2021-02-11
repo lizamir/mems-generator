@@ -30,14 +30,20 @@ var gMeme = {
             size: 40,
             align: 'center',
             color: 'black',
-            pos: 100
+            pos: {
+                x: 250,
+                y: 100
+            },
         },
         {
-            txt: 'I need money',
+            txt: '',
             size: 40,
             align: 'left',
             color: 'red',
-            pos: 300
+            pos: {
+                x: 250,
+                y: 400
+            },
         }
     ]
 };
@@ -70,16 +76,22 @@ function setTextSize(line, diff) {
 }
 
 function setMoveLine(line, diff) {
-    line.pos += diff;
+    line.pos.y += diff;
 }
 
 function getLineSelected() {
     return gMeme.lines[gMeme.selectedLineIdx];
 }
 
+function setSelectedLineIdx(idx) {
+    gMeme.selectedLineIdx = idx;
+    console.log(gMeme.selectedLineIdx);
+
+}
+
 function createLine(pos) {
     let line = {
-        txt: '',
+        txt: 'looo',
         size: 40,
         align: 'center',
         color: 'black',
