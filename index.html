@@ -10,7 +10,7 @@
 
 <body onload="init()">
 
-
+    <div class="main-screen" onclick="toggleMenu()"></div>
     <header>
         <section class="main-header flex align-center space-between">
             <div class="logo-place">
@@ -19,15 +19,16 @@
             <nav class="header-container ">
                 <ul class="main-nav clean-list flex ">
                     <li>
-                        <a href="#" class="gallery flex align-center nav-item">Gallery</a>
+                        <a href="#gallery" class="gallery flex align-center nav-item">Gallery</a>
                     </li>
                     <li>
-                        <a href="#" class="memes flex align-center nav-item">Mems</a>
+                        <a href="#mems" class="memes flex align-center nav-item">Mems</a>
                     </li>
                     <li>
-                        <a href="#" class="about flex align-center nav-item">About</a>
+                        <a href="#about" class="about flex align-center nav-item">About</a>
                     </li>
                 </ul>
+                <button class="menu-btn" onclick="toggleMenu()">☰</button>
             </nav>
         </section>
     </header>
@@ -50,43 +51,42 @@
         <section class="canvas-container main-container"></section>
         <section class="editor-container flex align-center ">
             <div class="meme-text-container flex align-center">
-                <input class="meme-text" id="line" type=text name="line" placeholder="text" onkeyup="onSetText()">
+                <input class="meme-text" id="line" type=text name="line0" placeholder="text" onkeyup="onSetText()">
             </div>
             <div class="editor-btn">
                 <div class="line-one flex align-center">
 
                     <img src="ICONS/add.png" class="add-line btn-img" onclick="onAddLine()">
                     <img src="ICONS/trash.png" class=" btn-img" onclick="onDeleteLine()">
-                    <img src="ICONS/up-down.png" class="switch btn-img" onclick="onSwitchLines()">
+                    <img src="ICONS/up-down.png" class="switch btn-img" onclick="onChangeFocusLine()">
 
                 </div>
 
                 <div class="line-two flex align-center">
                     <img src="ICONS/inc.png" class="increase btn-img" onclick="onChangeFontSize(1)">
                     <img src="ICONS/dec.png" class="decrease btn-img" onclick="onChangeFontSize(-1)">
-                    <img src="ICONS/center.png" class=" btn-img" onclick="onAddLine()">
-                    <img src="ICONS/left.png" class=" btn-img" onclick="onAddLine()">
-                    <img src="ICONS/right.png" class=" btn-img" onclick="onAddLine()">
+                    <img src="ICONS/center.png" class=" btn-img" onclick="onChangeAline('center')">
+                    <img src="ICONS/left.png" class=" btn-img" onclick="onChangeAline('left')">
+                    <img src="ICONS/right.png" class=" btn-img" onclick="onChangeAline('right')">
 
                 </div>
-
-                <img src="ICONS/paint.png" class=" btn-img" onclick="onAddLine()">
+                <button class="color btn"><input type="color" id="text-color" onchange="onChangeColor(this)"><img src="ICONS/paint.png" class=" btn-img"></button>
                 <img src="ICONS/text stroke.png" class=" btn-img" onclick="onAddLine()">
-                <button class="up btn-btn" onclick="onMoveLines(1)">↑</button>
-                <button class="down btn-btn" onclick="onMoveLines(-1)">↓</button>
+                <img src="ICONS/up.png" class="up btn-img " onclick="onMoveLines(1)">
+                <img src="ICONS/down.jpg" class="down btn-img " onclick="onMoveLines(-1)">
             </div>
 
 
         </section>
     </section>
 
-    <section class="image-gallery  main-container"></section>
+    <section id="gallery" class="image-gallery  main-container"></section>
 
-    <section class="person-container flex align-center space-between">
+    <section id="about" class="person-container flex align-center space-between">
         <img class="person-img" src="img/liz.jpg">
         <div class="person-about flex ">
             <p class="person-name">Liz Hajaj</p>
-            <p class="person-story">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci repellat officia consequatur aliquid. Temporibus veritatis placeat dolor, ab nesciunt repudiandae quae blanditiis cupiditate, minima nemo magni mollitia quod unde fuga?</p>
+            <p class="person-story">welcome to my meme's generator ! my name is liz , i am an alectrical engineer , and in the last year i choose to expand my knowledge and study full stuck in full time job!! this is my second project ,and i hope you enjoy it 😍 </p>
         </div>
     </section>
     <footer class="main-footer flex align-center justify-center">

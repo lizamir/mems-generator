@@ -31,11 +31,11 @@ function renderDesign(imgId) {
     `
     let elDesignPart = document.querySelector('.canvas-container');
     elDesignPart.innerHTML = strHtml;
+    let memText = getMeme();
     renderCanvas();
     resizeCanvas();
     drawImg();
-    let memText = getMeme();
-    drawText(gMeme.lines[memText.selectedLineIdx].txt, `${memText.lines[0].size}`, `${memText.lines[0].pos.x }`, `${memText.lines[0].pos.y}`)
+    drawText(memText.lines[0].txt, memText.lines[0].size, memText.lines[0].color, memText.lines[0].pos.x, memText.lines[0].pos.y)
 }
 
 function drawImg() {
@@ -59,22 +59,22 @@ function onSetText() {
     drawImg();
     let memText = getMeme();
     if (!memText.selectedLineIdx) {
-        let text = document.querySelector('input[name=line]').value;
+        let text = document.querySelector('input[name=line0]').value;
         setText(text, 0);
     }
-    drawText(memText.lines[0].txt, memText.lines[0].size, memText.lines[0].pos.x, memText.lines[0].pos.y);
+    drawText(memText.lines[0].txt, memText.lines[0].size, memText.lines[0].color, memText.lines[0].pos.x, memText.lines[0].pos.y);
     if (memText.selectedLineIdx) {
-        let text = document.querySelector('input[name=line]').value;
+        let text = document.querySelector('input[name=line0]').value;
         setText(text, 1);
     }
-    drawText(memText.lines[1].txt, memText.lines[1].size, memText.lines[1].pos.x, memText.lines[1].pos.y);
+    drawText(memText.lines[1].txt, memText.lines[1].size, memText.lines[1].color, memText.lines[1].pos.x, memText.lines[1].pos.y);
 }
 
 
-function drawText(text, size, x, y) {
+function drawText(text, size, color, x, y) {
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = 'white'
+    gCtx.fillStyle = color
     gCtx.font = `${size}px IMPACT`;
     gCtx.textAlign = 'center'
     gCtx.fillText(text, x, y)
@@ -96,10 +96,6 @@ function onMoveLines(diff) {
 function onAddLine() {
     renderCanvas();
     onSetText();
-    let meme = getMeme();
-    gCtx.rect(meme.lines[1].pos.x - 200, meme.lines[1].pos.y - 40, 400, 50);
-    gCtx.strokeStyle = 'black';
-    gCtx.stroke();
     setSelectedLineIdx(1);
     cleanInputText();
 }
@@ -107,5 +103,77 @@ function onAddLine() {
 function cleanInputText() {
     const memeText = document.getElementById('line')
     memeText.value = ''
+    console.log('memeText', memeText);
+}
 
+function onChangeFocusLine() {
+
+    let memeText = getMeme();
+    if (memeText.selectedLineIdx) {
+        gCtx.rect(memeText.lines[0].pos.x - 200, memeText.lines[0].pos.y - 40, 400, 50);
+        setSelectedLineIdx(0);
+    } else {
+        gCtx.rect(memeText.lines[1].pos.x - 200, memeText.lines[1].pos.y - 40, 400, 50);
+        setSelectedLineIdx(1);
+    }
+    console.log('memeText.selectedLineIdx', memeText.selectedLineIdx);
+    gCtx.strokeStyle = 'black';
+    gCtx.stroke();
+
+    let strHtml = `<input type="text" name = "line${memeText.selectedLineIdx}" class="meme-text" onkeyup="onfocusText()" ></input>`;
+    document.querySelector('.meme-text-container').innerHTML = strHtml;
+    document.querySelector(`input[name=line${memeText.selectedLineIdx}]`).value = `${memeText.lines[memeText.selectedLineIdx].txt}`;
+
+}
+
+function onfocusText() {
+    renderCanvas();
+    drawImg();
+    let memText = getMeme();
+    if (!memText.selectedLineIdx) {
+        let text = document.querySelector('input[name=line0]').value;
+        setText(text, 0);
+    }
+    drawText(memText.lines[0].txt, memText.lines[0].size, memText.lines[0].pos.x, memText.lines[0].pos.y);
+
+    if (memText.selectedLineIdx) {
+        let text = document.querySelector('input[name=line1]').value;
+        setText(text, 1);
+    }
+    drawText(memText.lines[1].txt, memText.lines[1].size, memText.lines[1].pos.x, memText.lines[1].pos.y);
+
+}
+
+function onChangeColor(ev) {
+    setColor(ev.value);
+    onSetText();
+    console.log('ev.value', ev.value);
+}
+
+function onChangeAline(aline) {
+    setAlignment(aline)
+    onSetText();
+}
+
+
+
+
+
+
+/////mobile//////////
+
+function toggleMenu() {
+    document.body.classList.toggle('open')
+}
+
+
+function onOpenModal() {
+    console.log(elModal, 'elModal');
+    var elModal = document.querySelector('.modal')
+    elModal.hidden = false;
+}
+
+
+function onCloseModal() {
+    document.querySelector('.modal').hidden = true
 }
