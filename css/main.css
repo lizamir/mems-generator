@@ -251,6 +251,10 @@ canvas {
     display: flex;
 }
 
+.display-grid {
+    display: grid;
+}
+
 .hide {
     display: none;
 }

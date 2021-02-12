@@ -19,13 +19,13 @@
             <nav class="header-container ">
                 <ul class="main-nav clean-list flex ">
                     <li>
-                        <a href="#gallery" class="gallery flex align-center nav-item">Gallery</a>
+                        <a href="#" onclick="openGallery()" class="gallery flex align-center nav-item">Gallery</a>
                     </li>
                     <li>
                         <a href="#mems" class="memes flex align-center nav-item">Mems</a>
                     </li>
                     <li>
-                        <a href="#about" class="about flex align-center nav-item">About</a>
+                        <a href="#" onclick="openAbout()" class="about flex align-center nav-item">About</a>
                     </li>
                 </ul>
                 <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -36,7 +36,13 @@
     <nav class="search-nav flex align-center space-between">
 
         <div class="search flex align-center">
-            <input type="text" class="search-input" name="search" placeholder="Search..." oninput="onSearchImg()">
+            <input list="search-words" class="search-input" name="search" placeholder="Search..." oninput="onSearchImg()">
+            <datalist id="search-words">
+                <option value="happy"></option>
+                <option value="smart"></option>
+                <option value="baby"></option>
+                <option value="man"></option>
+            </datalist>
             <img class="icon-search" src="img/search.png">
         </div>
 
@@ -57,7 +63,7 @@
                 <div class="line-one flex align-center">
 
                     <img src="ICONS/add.png" class="add-line btn-img" onclick="onAddLine()">
-                    <img src="ICONS/trash.png" class=" btn-img" onclick="onDeleteLine()">
+                    <img src="ICONS/trash.png" class=" btn-img" onclick="onDeleteLines()">
                     <img src="ICONS/up-down.png" class="switch btn-img" onclick="onChangeFocusLine()">
 
                 </div>

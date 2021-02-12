@@ -48,6 +48,10 @@ var gMeme = {
     ]
 };
 
+function getCurrLine(id) {
+    return gMeme.lines[id]
+}
+
 function getImages() {
     return gImgs;
 }
@@ -101,12 +105,6 @@ function setColor(color) {
 //     [gMeme.lines[0], gMeme.lines[1]] = [gMeme.lines[1], gMeme.lines[0]];
 // }
 
-function setFocusLine() {
-    gMeme.selectedLineIdx++
-        if (gMeme.selectedLineIdx >= gMeme.lines.length) {
-            gMeme.selectedLineIdx = 0
-        }
-}
 
 function setAlignment(aliment) {
     switch (aliment) {
