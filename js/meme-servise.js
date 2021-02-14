@@ -1,50 +1,52 @@
 'use strict'
 
+var gImgsSearch = [];
 
-var gKeywords = { 'happy': 12, 'funny puk': 1 }
+//var gKeywords = { 'happy': 12, 'funny puk': 1 }
 var gImgs = [
-    { id: 1, url: 'img/1.jpg', keywords: ['angry , minister'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['love , happy , dog , sweet'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['happy , dog , baby , love , sweet'] },
-    { id: 4, url: 'img/4.jpg', keywords: ['cat, sleep , sweet'] },
-    { id: 5, url: 'img/5.jpg', keywords: ['angry, baby'] },
-    { id: 6, url: 'img/6.jpg', keywords: ['smart, happy , man'] },
-    { id: 7, url: 'img/7.jpg', keywords: ['baby , sweet'] },
-    { id: 8, url: 'img/8.jpg', keywords: ['smart, happy , man'] },
-    { id: 9, url: 'img/9.jpg', keywords: ['laugh , happy , baby'] },
-    { id: 10, url: 'img/10.jpg', keywords: ['laugh , minister, man'] },
-    { id: 11, url: 'img/11.jpg', keywords: ['kiss , win , happy ,love , man'] },
-    { id: 12, url: 'img/12.jpg', keywords: ['man , smart , question'] },
-    { id: 13, url: 'img/13.jpg', keywords: ['actor , love , smart'] },
-    { id: 14, url: 'img/14.jpg', keywords: ['actor , angry , smart'] },
-    { id: 15, url: 'img/15.jpg', keywords: ['actor , happy ,smart'] },
-    { id: 16, url: 'img/16.jpg', keywords: ['actor , laugh'] },
-    { id: 17, url: 'img/17.jpg', keywords: ['man , minister'] },
-    { id: 18, url: 'img/18.jpg', keywords: ['afraid , man '] },
+    { id: 1, url: 'img/1.jpg', keywords: ['all', 'angry', 'minister'] },
+    { id: 2, url: 'img/2.jpg', keywords: ['all', 'love', 'happy', 'dog', 'sweet'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['all', 'happy , dog , baby , love , sweet'] },
+    { id: 4, url: 'img/4.jpg', keywords: ['all', 'cat', 'sleep', 'sweet'] },
+    { id: 5, url: 'img/5.jpg', keywords: ['all', 'angry', 'baby'] },
+    { id: 6, url: 'img/6.jpg', keywords: ['all', 'smart', 'happy', 'man'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['all', 'baby', 'sweet'] },
+    { id: 8, url: 'img/8.jpg', keywords: ['all', 'smart', 'happy', 'man'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['all', 'laugh', 'happy', 'baby'] },
+    { id: 10, url: 'img/10.jpg', keywords: ['all', 'laugh', 'minister', 'man'] },
+    { id: 11, url: 'img/11.jpg', keywords: ['all', 'kiss', 'win', 'happy', 'love', 'man'] },
+    { id: 12, url: 'img/12.jpg', keywords: ['all', 'man', 'smart', 'question'] },
+    { id: 13, url: 'img/13.jpg', keywords: ['all', 'actor', 'love', 'smart'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['all', 'actor', 'angry', 'smart'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['all', 'actor', 'happy', 'smart'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['all', 'actor', 'laugh'] },
+    { id: 17, url: 'img/17.jpg', keywords: ['all', 'man', 'minister'] },
+    { id: 18, url: 'img/18.jpg', keywords: ['all', 'afraid', 'man'] },
 ];
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [{
-            txt: 'I never eat Falafel',
+            txt: 'first line',
             size: 40,
             align: 'center',
             color: 'white',
             pos: {
-                x: 250,
+                x: 230,
                 y: 100
             },
         },
         {
-            txt: '',
+            txt: 'second line',
             size: 40,
             align: 'left',
-            color: 'red',
+            color: 'white',
             pos: {
-                x: 250,
+                x: 230,
                 y: 400
             },
-        }
+        },
+
     ]
 };
 
@@ -66,18 +68,30 @@ function getLines() {
 
 function addLine() {
     let curMeme = gMeme.lines.length - 1;
-    if (!curMeme) {}
+    if (!curMeme) {
+        gMeme.lines.push({
+            txt: 'third line',
+            size: 40,
+            align: 'left',
+            color: 'red',
+            pos: {
+                x: 250,
+                y: 250
+            },
+        })
+    }
 }
 
 function getImgById(imgId) {
+    gMeme.selectedImgId = imgId;
     var img = gImgs.find(img => {
         return imgId === img.id;
     })
     return img;
 }
 
-function setText(text, idx) {
-    gMeme.lines[idx].txt = text;
+function setText(text) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = text;
 }
 
 function setTextSize(line, diff) {
@@ -119,4 +133,24 @@ function setAlignment(aliment) {
             break;
 
     }
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+}
+
+function getImgSearch() {
+    return gImgsSearch;
+}
+
+
+function setImagesSearch(inputSearch) {
+    console.log('inputSearch', inputSearch);
+    console.log('gImgs:', gImgs)
+    let imgs = gImgs.filter((img) => {
+        return img.keywords.includes(inputSearch)
+    });
+    gImgsSearch = imgs;
+    console.log('imgs', gImgsSearch);
+
 }

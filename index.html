@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title> 😎 Mems Generator </title>
 </head>
 
@@ -33,23 +35,27 @@
         </section>
     </header>
 
-    <nav class="search-nav flex align-center space-between">
+    <nav class="search-nav main-container flex align-center space-between">
 
         <div class="search flex align-center">
-            <input list="search-words" class="search-input" name="search" placeholder="Search..." oninput="onSearchImg()">
+            <input list="search-words" class="search-input" name="search" placeholder="Search..." onkeyup="onSearchImg(this.value)">
             <datalist id="search-words">
+
+                <option value="all"></option>
                 <option value="happy"></option>
                 <option value="smart"></option>
                 <option value="baby"></option>
+                <option value="sleep"></option>
+                <option value="dog"></option>
+                <option value="win"></option>
+                <option value="minister"></option>
                 <option value="man"></option>
+                <option value="angry"></option>
             </datalist>
             <img class="icon-search" src="img/search.png">
+
         </div>
 
-        <div class="keywords flex space-around align-center">
-            <div class="grid justify-center align-center keywords"></div>
-            <button class="more btn" onclick="renderKeyWords()">More</button>
-        </div>
     </nav>
 
 
@@ -76,10 +82,20 @@
                     <img src="ICONS/right.png" class=" btn-img" onclick="onChangeAline('right')">
 
                 </div>
-                <button class="color btn"><input type="color" id="text-color" onchange="onChangeColor(this)"><img src="ICONS/paint.png" class=" btn-img"></button>
-                <img src="ICONS/text stroke.png" class=" btn-img" onclick="onAddLine()">
-                <img src="ICONS/up.png" class="up btn-img " onclick="onMoveLines(1)">
-                <img src="ICONS/down.jpg" class="down btn-img " onclick="onMoveLines(-1)">
+
+                <div class="line-three flex align-center">
+                    <button class="color btn"><input type="color" id="text-color" onchange="onChangeColor(this)"><img src="ICONS/paint.png" class=" btn-img"></button>
+                    <img src="ICONS/text stroke.png" class=" btn-img" onclick="onAddLine()">
+                    <img src="ICONS/up.png" class="up btn-img " onclick="onMoveLines(1)">
+                    <img src="ICONS/down.jpg" class="down btn-img " onclick="onMoveLines(-1)">
+                </div>
+
+                <div class="line-four flex align-center">
+                    <a class="fa fa-download font" href="#" onclick="onDownload(this)" download="my-meme"></a>
+                    <i class="fa fa-share-alt font-share"></i>
+
+
+                </div>
             </div>
 
 

@@ -3,6 +3,7 @@
 var gElCanvas;
 var gCtx;
 var gCurrWord;
+var gIsSearchImg = false;
 
 function init() {
     renderImages();
@@ -10,7 +11,13 @@ function init() {
 }
 
 function renderImages() {
-    let images = getImages()
+    if (gIsSearchImg) {
+        var images = getImgSearch();
+    } else {
+
+        var images = getImages()
+    }
+    console.log('images', images);
     let strHtml = images.map((img) => {
         return `
         <div class = "pic img-${img.id}" onclick = "renderDesign(${img.id})"> <img src="${img.url}" alt="img-${img.id}"> </div>
@@ -21,7 +28,7 @@ function renderImages() {
 }
 
 
-function renderDesign(imgId) {
+function renderDesign(imgId = getMeme().selectedImgId) {
     document.querySelector('.image-gallery').style.display = 'none';
     document.querySelector('.person-container').style.display = 'none';
     document.querySelector('.search-nav').style.display = 'none';
@@ -32,16 +39,19 @@ function renderDesign(imgId) {
     `
     let elDesignPart = document.querySelector('.canvas-container');
     elDesignPart.innerHTML = strHtml;
-    let memText = getMeme();
     renderCanvas();
     resizeCanvas();
     drawImg();
-    drawText(0)
+    renderLines()
 }
 
+function renderLines() {
+    let memText = getMeme();
+    memText.lines.forEach((line, idx) => drawText(idx))
+}
 
-function drawText(id) {
-    let line = getCurrLine(id)
+function drawText(idx) {
+    let line = getCurrLine(idx)
     gCtx.lineWidth = 2
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
@@ -100,7 +110,7 @@ function onMoveLines(diff) {
 
 function onAddLine() {
     renderCanvas();
-    onSetText();
+    onfocusText();
     setSelectedLineIdx(1);
     cleanInputText();
 }
@@ -114,6 +124,7 @@ function cleanInputText() {
 function onChangeFocusLine() {
 
     let memeText = getMeme();
+    renderDesign(memeText.selectedImgId)
     if (memeText.selectedLineIdx) {
 
         gCtx.rect(memeText.lines[0].pos.x - 200, memeText.lines[0].pos.y - 40, 400, 50);
@@ -130,27 +141,16 @@ function onChangeFocusLine() {
     let strHtml = `<input type="text" name = "line${memeText.selectedLineIdx}" class="meme-text" onkeyup="onfocusText()" ></input>`;
     document.querySelector('.meme-text-container').innerHTML = strHtml;
     document.querySelector(`input[name=line${memeText.selectedLineIdx}]`).value = `${memeText.lines[memeText.selectedLineIdx].txt}`;
-
 }
-
 
 
 function onfocusText() {
     renderCanvas();
     drawImg();
-    let memText = getMeme();
-    if (!memText.selectedLineIdx) {
-        let text = document.querySelector('input[name=line0]').value;
-        setText(text, 0);
-    }
-    drawText(0);
+    let text = document.querySelector('.meme-text').value;
+    setText(text);
 
-    if (memText.selectedLineIdx) {
-        let text = document.querySelector('input[name=line1]').value;
-        setText(text, 1);
-    }
-    drawText(1);
-
+    renderDesign();
 }
 
 function onChangeColor(ev) {
@@ -165,7 +165,8 @@ function onChangeAline(aline) {
 }
 
 function onDeleteLines() {
-    drawImg();
+    deleteLine()
+    renderDesign(getMeme().selectedImgId);
 }
 
 
@@ -185,11 +186,16 @@ function openAbout() {
     document.querySelector('.search-nav').style.display = 'none';
 }
 
-function onSearchImg(ev) {
-    ev.preventDefault();
-    gCurrWord = document.querySelector('.search-input').value;
-    document.querySelector('.search-input').value = '';
+function onSearchImg(evVal) {
+    gIsSearchImg = true;
+    setImagesSearch(evVal);
+    console.log(evVal, 'elVal');
     renderImages();
+}
+
+function onDownload(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
 }
 
 
